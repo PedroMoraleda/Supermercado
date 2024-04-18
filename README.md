@@ -1,6 +1,8 @@
 A sample command-line application with an entrypoint in `bin/`, library code
 in `lib/`, and example unit test in `test/`.
 
-https://docs.google.com/document/d/172BBVmp3r5E93a07hJRgxSLtaV1O1kPgPEZRxg6DvmQ/edit?usp=sharing
+
+Una aplicación de un supermercado en la que se podría ver al ejecutar el terminal el catálogo de productos, búsqueda de productos, lista de la compra, ofertas, carrito de la compra, con una base de datos 
+
 
 
