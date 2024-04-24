@@ -1,7 +1,6 @@
 import 'dart:io';
-import 'Pruebas.dart';
 import 'Usuario.dart';
-
+import 'Pruebas.dart';
 class App {
  inicioApp() async {
     int? opcion;
@@ -29,7 +28,7 @@ class App {
     int? opcion;
     do {
       stdout.writeln('''Hola, $nombre selecciona una de las siguientes opciones:
-        1 - Busqueda de productos
+        1 - Catalogo de productos
         2 - Lista de la compra
         3 - Ofertas
         4 - Carrito de la compra''');
@@ -37,7 +36,7 @@ class App {
     } while (opcion == null || opcion != 1 && opcion !=2 && opcion !=3 && opcion !=4);
     switch (opcion) {
       case 1:
-        await busqueda();
+        await catalogo();
         break;
       case 2:
        await lista();
@@ -73,47 +72,45 @@ class App {
     usuario.password = stdin.readLineSync();
     await usuario.insertarUsuario();
   }
-
-
-
-
-
-  pedirProducto() {
-    stdout.writeln("Escribe el nombre del producto a consultar");
-    stdin.readLineSync() ?? "error";
-
 }
+    String? pedirProducto() {
+    stdout.writeln("Este es nuestro catalogo");
+    print(Scatalogo);}
+
+    String? mostrarOferta() {
+   //stdout.writeln("¡Aun no hay ofertas!");
+    stdout.writeln("¡3x2 en cereales hasta el miercoles!");
+}
+
    String listaCompra() {
     stdout.writeln("Escribe el nombre del producto que quieres añadir a la lista");
     return stdin.readLineSync() ?? "error";
 }
-    mostrarOferta() {
-   //stdout.writeln("¡Aun no hay ofertas!");
-    stdout.writeln("¡3x2 en cereales hasta el miercoles!");
-}
-   String consultarCarrito() {
+
+
+   String? consultarCarrito() {
     stdout.writeln("Tu carrito esta vacio");
-    return stdin.readLineSync() ?? "error"; // mal
 }
 
 
 
-    busqueda() async {
-    String respuesta = pedirProducto();  
+    catalogo() async {
+    String? respuesta = await pedirProducto();  
       }
 
     lista() async {
-    String respuesta = listaCompra();
+    String respuesta = await listaCompra();
       }
 
     ofertas() async {
-    String respuesta = mostrarOferta();
+    String? respuesta = await mostrarOferta();
       }
 
     carrito() async {
-    String respuesta = consultarCarrito();
+    String? respuesta = await consultarCarrito();
       }
 
 
-}
+
+
     
