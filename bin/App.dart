@@ -1,10 +1,9 @@
 import 'dart:io';
 import 'Pruebas.dart';
-import 'Database.dart';
 import 'Usuario.dart';
 
 class App {
-static  inicioApp() async {
+ inicioApp() async {
     int? opcion;
     do{
       stdout.writeln('''Elige una opción
@@ -15,15 +14,16 @@ static  inicioApp() async {
     } while(opcion == null || opcion != 1 && opcion !=2);
     switch(opcion){
       case 1:
-        crearUsuario();
+        await crearUsuario();
+        inicioApp();
         break;
       case 2:
-        login();
+        Usuario usuario = await login();
+        menuLogueado(usuario);
         break;
       
     }
 }
-
   menuLogueado(Usuario usuario) async {
     String? nombre = usuario.nombre;
     int? opcion;
@@ -35,51 +35,25 @@ static  inicioApp() async {
         4 - Carrito de la compra''');
       opcion = int.tryParse(stdin.readLineSync() ?? 'e');
     } while (opcion == null || opcion != 1 && opcion !=2 && opcion !=3 && opcion !=4);
-    
     switch (opcion) {
       case 1:
-        busqueda();
+        await busqueda();
         break;
       case 2:
-        lista();
+       await lista();
         break;
       case 3:
-        ofertas();
+        await ofertas();
         break;
       case 4:
-        carrito();
+        await carrito();
         break;
       default:
-        inicioApp();
+        await inicioApp();
     }
   }
 
-  
-
-
-
-
-
-
- static pedirProducto() {
-    stdout.writeln("Escribe el nombre del producto a consultar");
-    stdin.readLineSync() ?? "error";
-    print (imprimirProducto);
-
-}
-  static String listaCompra() {
-    stdout.writeln("Escribe el nombre del producto que quieres añadir a la lista");
-    return stdin.readLineSync() ?? "error";
-}
-  static  mostrarOferta() {
-   //stdout.writeln("¡Aun no hay ofertas!");
-    stdout.writeln("¡3x2 en cereales hasta el miercoles!");
-}
-  static String consultarCarrito() {
-    stdout.writeln("Tu carrito esta vacio");
-    return stdin.readLineSync() ?? "error"; // mal
-}
- static login() async {
+  login() async {
     Usuario usuario = new Usuario();
     stdout.writeln('Introduce tu nombre de usuario');
     usuario.nombre = stdin.readLineSync();
@@ -89,37 +63,57 @@ static  inicioApp() async {
     if(resultado == false){
       stdout.writeln('Tu nombre de usuario o contraseña son incorrectos');
     }
+    return resultado;
   }
-  static crearUsuario() async {
+   crearUsuario() async {
     Usuario usuario = new Usuario();
     stdout.writeln('Introduce un nombre de usuario');
     usuario.nombre = stdin.readLineSync();
     stdout.writeln('Introduce una constraseña');
     usuario.password = stdin.readLineSync();
     await usuario.insertarUsuario();
-
   }
 
-  static  busqueda() async {
+
+
+
+
+  pedirProducto() {
+    stdout.writeln("Escribe el nombre del producto a consultar");
+    stdin.readLineSync() ?? "error";
+
+}
+   String listaCompra() {
+    stdout.writeln("Escribe el nombre del producto que quieres añadir a la lista");
+    return stdin.readLineSync() ?? "error";
+}
+    mostrarOferta() {
+   //stdout.writeln("¡Aun no hay ofertas!");
+    stdout.writeln("¡3x2 en cereales hasta el miercoles!");
+}
+   String consultarCarrito() {
+    stdout.writeln("Tu carrito esta vacio");
+    return stdin.readLineSync() ?? "error"; // mal
+}
+
+
+
+    busqueda() async {
     String respuesta = pedirProducto();  
       }
 
-  static  lista() async {
+    lista() async {
     String respuesta = listaCompra();
       }
 
-  static  ofertas() async {
+    ofertas() async {
     String respuesta = mostrarOferta();
       }
 
-  static  carrito() async {
+    carrito() async {
     String respuesta = consultarCarrito();
       }
 
 
 }
     
-    imprimirProducto(Producto producto) {
-    stdout.writeln("Nombre: ${producto.nombre}");
-    stdout.writeln("Precio: ${producto.precio}");
-    }
