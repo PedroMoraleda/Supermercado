@@ -4,13 +4,13 @@ import 'Pruebas.dart';
 class App {
  inicioApp() async {
     int? opcion;
-    do{
-      stdout.writeln('''Elige una opción
-      1 - Registrate
-      2 - Iniciar Sesion''');
-      String respuesta = stdin.readLineSync() ?? 'e';
-      opcion = int.tryParse(respuesta);
-    } while(opcion == null || opcion != 1 && opcion !=2);
+      do{
+        stdout.writeln('''Elige una opción
+          1 - Registrate
+          2 - Iniciar Sesion''');
+        String respuesta = stdin.readLineSync() ?? 'e';
+        opcion = int.tryParse(respuesta);
+      } while(opcion == null || opcion != 1 && opcion !=2);
     switch(opcion){
       case 1:
         await crearUsuario();
@@ -20,26 +20,26 @@ class App {
         Usuario usuario = await login();
         menuLogueado(usuario);
         break;
-      
     }
 }
   menuLogueado(Usuario usuario) async {
-    String? nombre = usuario.nombre;
-    int? opcion;
-    do {
+      String? nombre = usuario.nombre;
+      int? opcion;
+     do {
       stdout.writeln('''Hola, $nombre selecciona una de las siguientes opciones:
-        1 - Catalogo de productos
-        2 - Lista de la compra
-        3 - Ofertas
-        4 - Carrito de la compra''');
+          1 - Catalogo de productos
+          2 - Lista de la compra
+          3 - Ofertas
+          4 - Carrito de la compra''');
       opcion = int.tryParse(stdin.readLineSync() ?? 'e');
-    } while (opcion == null || opcion != 1 && opcion !=2 && opcion !=3 && opcion !=4);
+     } while (opcion == null || opcion != 1 && opcion !=2 && opcion !=3 && opcion !=4);
     switch (opcion) {
       case 1:
         await catalogo();
         break;
       case 2:
        await lista();
+       await verCarrito();
         break;
       case 3:
         await ofertas();
@@ -51,6 +51,24 @@ class App {
         await inicioApp();
     }
   }
+  verCarrito() async {
+      int? opcion;
+     do {
+      stdout.writeln('''¿Quieres consultar tu carrito?:
+          1 - Si
+          2 - No''');
+      opcion = int.tryParse(stdin.readLineSync() ?? 'e');
+     } while (opcion == null || opcion != 1 && opcion !=2);
+    switch (opcion) {
+      case 1:
+        await carrito();
+        break;
+      case 2:
+        print("pringao");
+        break;
+    }
+  }
+}
 
   login() async {
     Usuario usuario = new Usuario();
@@ -72,42 +90,49 @@ class App {
     usuario.password = stdin.readLineSync();
     await usuario.insertarUsuario();
   }
-}
-    String? pedirProducto() {
-    stdout.writeln("Este es nuestro catalogo");
-    print(Scatalogo);}
 
-    String? mostrarOferta() {
-   //stdout.writeln("¡Aun no hay ofertas!");
-    stdout.writeln("¡3x2 en cereales hasta el miercoles!");
-}
+    pedirProducto() {
+      stdout.writeln("Este es nuestro catalogo");
+      print(Scatalogo);}
 
-   String listaCompra() {
-    stdout.writeln("Escribe el nombre del producto que quieres añadir a la lista");
-    return stdin.readLineSync() ?? "error";
+    mostrarOferta() {
+      //stdout.writeln("¡Aun no hay ofertas!");
+      stdout.writeln('''
+  Descuento del 20% en todas las verduras orgánicas.
+  Compra uno, llévate el segundo al 50% de descuento" en yogures de marca propia.
+  2x1 en leche en cartón de un litro.''');
 }
 
+    listaCompra() {
+      stdout.writeln("Escribe el nombre del producto que quieres añadir a la lista");
+      String? lista = stdin.readLineSync() ?? "error";
+      lista;      
+      print ("¡Añadido a tu carrito!");
+}
 
-   String? consultarCarrito() {
-    stdout.writeln("Tu carrito esta vacio");
+
+    consultarCarrito() {
+      stdout.writeln("Tu carrito esta vacio😪");
+      //stdout.writeln("¡Aqui tienes tu carrito!");
+      //print(lista);
 }
 
 
 
     catalogo() async {
-    String? respuesta = await pedirProducto();  
+      pedirProducto();  
       }
 
     lista() async {
-    String respuesta = await listaCompra();
+      listaCompra();
       }
 
     ofertas() async {
-    String? respuesta = await mostrarOferta();
+      mostrarOferta();
       }
 
     carrito() async {
-    String? respuesta = await consultarCarrito();
+      consultarCarrito();
       }
 
 

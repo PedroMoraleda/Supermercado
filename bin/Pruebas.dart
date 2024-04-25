@@ -1,5 +1,3 @@
-import 'dart:io';
-import 'Producto.dart';
 
   /*pedirProducto()async {
     stdout.writeln("Escribe el nombre del producto a consultar");
