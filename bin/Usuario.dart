@@ -1,5 +1,4 @@
 import 'package:mysql1/mysql1.dart';
-
 import 'Database.dart';
 
 class Usuario {
