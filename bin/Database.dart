@@ -61,13 +61,4 @@ class Database {
     )''');
     //print('Tabla productos creada');
   }
-   /* _crearTablaListaCompra(conn) async {
-    await conn.query('''CREATE TABLE IF NOT EXISTS listacompra(
-        idusuario INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-        nombre VARCHAR(50),
-        precio INT,
-        stock BOOL
-    )''');
-    print('Tabla productos creada');
-}*/
 }

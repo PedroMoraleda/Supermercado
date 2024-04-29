@@ -72,33 +72,33 @@ List<String> carritoDeCompra = [];
 }
 
 
-  login() async {
-    Usuario usuario = new Usuario();
-    stdout.writeln('Introduce tu nombre de usuario');
-    usuario.nombre = stdin.readLineSync();
-    stdout.writeln('Introduce tu constraseña');
-    usuario.password = stdin.readLineSync();
-    var resultado = await usuario.loginUsuario();
-    if(resultado == false){
-      stdout.writeln('Tu nombre de usuario o contraseña son incorrectos');
-    }
-    return resultado;
-  }
-   crearUsuario() async {
-    Usuario usuario = new Usuario();
-    stdout.writeln('Introduce un nombre de usuario');
-    usuario.nombre = stdin.readLineSync();
-    stdout.writeln('Introduce una constraseña');
-    usuario.password = stdin.readLineSync();
-    await usuario.insertarUsuario();
-  }
+    login() async {
+      Usuario usuario = new Usuario();
+        stdout.writeln('Introduce tu nombre de usuario');
+        usuario.nombre = stdin.readLineSync();
+        stdout.writeln('Introduce tu constraseña');
+        usuario.password = stdin.readLineSync();
+        var resultado = await usuario.loginUsuario();
+          if(resultado == false){
+          stdout.writeln('Tu nombre de usuario o contraseña son incorrectos');}
+      return resultado;}
+
+    crearUsuario() async {
+      Usuario usuario = new Usuario();
+      stdout.writeln('Introduce un nombre de usuario');
+      usuario.nombre = stdin.readLineSync();
+      stdout.writeln('Introduce una constraseña');
+      usuario.password = stdin.readLineSync();
+      await usuario.insertarUsuario();}
 
     pedirProducto() {
       stdout.writeln("Este es nuestro catalogo");
-      print(Scatalogo);}
+      Scatalogo.forEach((producto, precio) {
+      print("$producto - \$$precio");
+      });}
+
 
     mostrarOferta() {
-      //stdout.writeln("¡Aun no hay ofertas!");
       stdout.writeln('''
   Descuento del 20% en todas las verduras orgánicas.
   Compra uno, llévate el segundo al 50% de descuento" en yogures de marca propia.
@@ -116,27 +116,23 @@ List<String> carritoDeCompra = [];
       }
     }
 
-          //ConsultarCarrito() {
-            //stdout.writeln("Tu carrito esta vacio😪");
-            //stdout.writeln("¡Aqui tienes tu carrito!");
-            //print(lista);
-          //}
+              //ConsultarCarrito() {
+                //stdout.writeln("Tu carrito esta vacio😪");
+                //stdout.writeln("¡Aqui tienes tu carrito!");
+                //print(lista);
+              //}
 
 
 
     catalogo() async {
-      pedirProducto();  
-      }
+      pedirProducto();}
 
     lista() async {
-      listaCompra();
-      }
+      listaCompra();}
 
     ofertas() async {
-      mostrarOferta();
-      }
+      mostrarOferta();}
 
     carrito() async {
-      verCarrito();
-      }
+      verCarrito();}
 }
