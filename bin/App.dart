@@ -82,7 +82,7 @@ List<String> carritoDeCompra = [];
           if(resultado == false){
           stdout.writeln('Tu nombre de usuario o contraseña son incorrectos');}
       return resultado;}
-asdasdfad
+
     crearUsuario() async {
       Usuario usuario = new Usuario();
       stdout.writeln('Introduce un nombre de usuario');
