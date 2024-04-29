@@ -40,7 +40,7 @@ class Database {
   _crearSupermercado (conn) async {
     await conn.query('CREATE DATABASE IF NOT EXISTS supermercado');
     await conn.query('USE supermercado');
-    print('Conectado a supermercado');
+    //print('Conectado a supermercado');
   }
 
   _crearTablaUsuarios(conn) async {
@@ -49,7 +49,7 @@ class Database {
         nombre VARCHAR(50) NOT NULL UNIQUE,
         password VARCHAR(10) NOT NULL
     )''');
-    print('Tabla usuarios creada');
+    //print('Tabla usuarios creada');
   }
 
   _crearTablaProductos(conn) async {
@@ -59,7 +59,7 @@ class Database {
         precio INT,
         stock BOOL
     )''');
-    print('Tabla productos creada');
+    //print('Tabla productos creada');
   }
    /* _crearTablaListaCompra(conn) async {
     await conn.query('''CREATE TABLE IF NOT EXISTS listacompra(

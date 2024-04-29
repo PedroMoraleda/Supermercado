@@ -2,6 +2,7 @@ import 'dart:io';
 import 'Usuario.dart';
 import 'Pruebas.dart';
 class App {
+List<String> carritoDeCompra = [];
  inicioApp() async {
     int? opcion;
       do{
@@ -30,45 +31,46 @@ class App {
           1 - Catalogo de productos
           2 - Lista de la compra
           3 - Ofertas
-          4 - Carrito de la compra''');
+          4 - Carrito de la compra
+          5 - Salir''');
       opcion = int.tryParse(stdin.readLineSync() ?? 'e');
-     } while (opcion == null || opcion != 1 && opcion !=2 && opcion !=3 && opcion !=4);
+     } while (opcion == null || opcion != 1 && opcion !=2 && opcion !=3 && opcion !=4 && opcion !=5);
     switch (opcion) {
       case 1:
         await catalogo();
+        await menuLogueado(usuario);
         break;
       case 2:
        await lista();
        await verCarrito();
+       await menuLogueado(usuario);
         break;
       case 3:
         await ofertas();
+        await menuLogueado(usuario);
         break;
       case 4:
         await carrito();
+        await menuLogueado(usuario);
         break;
+      case 5: 
+      print("¡¡Vuelve pronto!!");
+      break;
       default:
         await inicioApp();
     }
   }
   verCarrito() async {
-      int? opcion;
-     do {
-      stdout.writeln('''¿Quieres consultar tu carrito?:
-          1 - Si
-          2 - No''');
-      opcion = int.tryParse(stdin.readLineSync() ?? 'e');
-     } while (opcion == null || opcion != 1 && opcion !=2);
-    switch (opcion) {
-      case 1:
-        await carrito();
-        break;
-      case 2:
-        print("pringao");
-        break;
+    stdout.writeln("Tu carrito de compra:");
+    if (carritoDeCompra.isEmpty) {
+      stdout.writeln("El carrito está vacío.");
+    } else {
+      for (var producto in carritoDeCompra) {
+        stdout.writeln(producto);
     }
   }
 }
+
 
   login() async {
     Usuario usuario = new Usuario();
@@ -105,17 +107,20 @@ class App {
 
     listaCompra() {
       stdout.writeln("Escribe el nombre del producto que quieres añadir a la lista");
-      String? lista = stdin.readLineSync() ?? "error";
-      lista;      
-      print ("¡Añadido a tu carrito!");
-}
+        String? producto = stdin.readLineSync();
+        if (producto != null && producto.isNotEmpty) {
+           carritoDeCompra.add(producto);
+           stdout.writeln("¡Añadido a tu carrito!");
+         } else {
+           stdout.writeln("Por favor, ingresa un nombre de producto válido.");
+      }
+    }
 
-
-    consultarCarrito() {
-      stdout.writeln("Tu carrito esta vacio😪");
-      //stdout.writeln("¡Aqui tienes tu carrito!");
-      //print(lista);
-}
+          //ConsultarCarrito() {
+            //stdout.writeln("Tu carrito esta vacio😪");
+            //stdout.writeln("¡Aqui tienes tu carrito!");
+            //print(lista);
+          //}
 
 
 
@@ -132,10 +137,6 @@ class App {
       }
 
     carrito() async {
-      consultarCarrito();
+      verCarrito();
       }
-
-
-
-
-    
+}
