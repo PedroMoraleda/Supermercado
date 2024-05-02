@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'Usuario.dart';
 import 'Pruebas.dart';
+import 'Domicilio.dart';
 class App {
 List<String> carritoDeCompra = [];
  inicioApp() async {
@@ -14,11 +15,11 @@ List<String> carritoDeCompra = [];
       } while(opcion == null || opcion != 1 && opcion !=2);
     switch(opcion){
       case 1:
-        await crearUsuario();
+        await Usuario().crearUsuario();
         inicioApp();
         break;
       case 2:
-        Usuario usuario = await login();
+        Usuario usuario = await Usuario().login();
         menuLogueado(usuario);
         break;
     }
@@ -32,9 +33,10 @@ List<String> carritoDeCompra = [];
           2 - Lista de la compra
           3 - Ofertas
           4 - Carrito de la compra
-          5 - Salir''');
+          5 - Compra en casa
+          6 - Salir''');
       opcion = int.tryParse(stdin.readLineSync() ?? 'e');
-     } while (opcion == null || opcion != 1 && opcion !=2 && opcion !=3 && opcion !=4 && opcion !=5);
+     } while (opcion == null || opcion != 1 && opcion !=2 && opcion !=3 && opcion !=4 && opcion !=5 && opcion !=6);
     switch (opcion) {
       case 1:
         await catalogo();
@@ -54,6 +56,9 @@ List<String> carritoDeCompra = [];
         await menuLogueado(usuario);
         break;
       case 5: 
+      await aDomicilio();
+      break;
+      case 6: 
       print("¡¡Vuelve pronto!!");
       break;
       default:
@@ -70,27 +75,6 @@ List<String> carritoDeCompra = [];
     }
   }
 }
-
-
-    login() async {
-      Usuario usuario = new Usuario();
-        stdout.writeln('Introduce tu nombre de usuario');
-        usuario.nombre = stdin.readLineSync();
-        stdout.writeln('Introduce tu constraseña');
-        usuario.password = stdin.readLineSync();
-        var resultado = await usuario.loginUsuario();
-          if(resultado == false){
-          stdout.writeln('Tu nombre de usuario o contraseña son incorrectos');}
-      return resultado;}
-
-    crearUsuario() async {
-      Usuario usuario = new Usuario();
-      stdout.writeln('Introduce un nombre de usuario');
-      usuario.nombre = stdin.readLineSync();
-      stdout.writeln('Introduce una constraseña');
-      usuario.password = stdin.readLineSync();
-      await usuario.insertarUsuario();}
-
     pedirProducto() {
       stdout.writeln("Este es nuestro catalogo");
       Scatalogo.forEach((producto, precio) {
@@ -116,11 +100,11 @@ List<String> carritoDeCompra = [];
       }
     }
 
-              //ConsultarCarrito() {
-                //stdout.writeln("Tu carrito esta vacio😪");
-                //stdout.writeln("¡Aqui tienes tu carrito!");
-                //print(lista);
-              //}
+
+
+
+
+
 
 
 

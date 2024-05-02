@@ -1,5 +1,6 @@
 import 'package:mysql1/mysql1.dart';
 import 'Database.dart';
+import 'dart:io';
 
 class Usuario {
   // Propiedades
@@ -83,5 +84,23 @@ class Usuario {
       await conn.close();
     }
   }
+      login() async {
+      Usuario usuario = new Usuario();
+        stdout.writeln('Introduce tu nombre de usuario');
+        usuario.nombre = stdin.readLineSync();
+        stdout.writeln('Introduce tu constraseña');
+        usuario.password = stdin.readLineSync();
+        var resultado = await usuario.loginUsuario();
+          if(resultado == false){
+          stdout.writeln('Tu nombre de usuario o contraseña son incorrectos');}
+      return resultado;}
+
+    crearUsuario() async {
+      Usuario usuario = new Usuario();
+      stdout.writeln('Introduce un nombre de usuario');
+      usuario.nombre = stdin.readLineSync();
+      stdout.writeln('Introduce una constraseña');
+      usuario.password = stdin.readLineSync();
+      await usuario.insertarUsuario();}
 }
 

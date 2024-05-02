@@ -1,15 +1,4 @@
 
-  /*pedirProducto()async {
-    stdout.writeln("Escribe el nombre del producto a consultar");
-    stdin.readLineSync() ?? "error";
-    stdout.writeln ("Huevos 1.20€");}
-    
-
-    busqueda() async {
-    String respuesta = pedirProducto();  
-      }
-*/
-
   Map<String, double> Scatalogo = {
     // Frutas y Verduras
     'Manzanas': 2.99,
@@ -32,3 +21,13 @@
     'Refrescos': 1.29,
     'Jugo de naranja': 2.99,
   };
+
+
+
+
+
+
+
+    
+      
+
