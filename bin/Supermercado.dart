@@ -4,5 +4,6 @@ main()async {
   await Database().instalacion();
   print("¡¡Bienvenido al supermercado!!");
   App().inicioApp();
+  
 
 }

@@ -1,6 +1,5 @@
 import 'dart:io';
-import 'dart:typed_data';
-import 'App.dart';
+
 
 aDomicilio()async{
       stdout.writeln("Introduzca su direccion");
@@ -21,34 +20,36 @@ aDomicilio()async{
      switch (opcion) {
        case 1:
        await packdomicilio();
-       await pedido();
+       await pedidoadomicilio();
          break;
        case 2:
-        await pedido();
+        await pedidoadomicilio();
          break;
     }
-  
+}
   pedidoadomicilio(){
     stdout.writeln('''Escoge un pack:
            1 - Pack de Cocina Italiana
            2 - Pack de Desayuno y Abastecimiento Básico
            3 - Pack de Abastecimiento Doméstico''');
-    String? epack = stdin.readLineSync();
+    var respuesta = stdin.readLineSync();
     
+    int? epack = int.tryParse(respuesta!);
+
     if (epack==1) {
-      stdout.writeln("Su Pack de Cocina Italiana se entregara el $eDia en $direccion a las $eHora");
+      print("Su Pack de Cocina Italiana se entregara en su direccion el dia indicado");
     } else if (epack==2) {
-      stdout.writeln("Su Pack de Desayuno y Abastecimiento Básico se entregara el $eDia en $direccion a las $eHora");
+      print("Su Pack de Desayuno y Abastecimiento Básico se entregara en su direccion el dia indicado");
     } else if (epack==3) {
-      stdout.writeln("Su Pack de Abastecimiento Doméstico se entregara el $eDia en $direccion a las $eHora");
+      print("Su Pack de Abastecimiento Doméstico se entregara en su direccion el dia indicado");
     } else {
-      stdout.writeln("Error");
+      print("Error");
     }
 
   }
 
 
-}
+
   packdomicilio(){
         stdout.writeln('''Estos son los packs disponibles
            1 - Pack de Cocina Italiana (100€)
@@ -81,8 +82,5 @@ aDomicilio()async{
 
 
 
-    pedido() async {
-      aDomicilio().pedidoadomicilio;}
-  
-
+    
 
